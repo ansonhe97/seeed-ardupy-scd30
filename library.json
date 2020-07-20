@@ -1,0 +1,12 @@
+{
+    "name": "Seeed ArduPy SCD30 ",
+    "version": "1.0.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Seeed-Studio/seeed-ardupy-scd30.git"
+    },
+    "dependencies": [{
+        "name": "Seeed_Arduino_SCD30",
+        "url": "https://github.com/Seeed-Studio/Seeed_SCD30"
+    }]
+}
