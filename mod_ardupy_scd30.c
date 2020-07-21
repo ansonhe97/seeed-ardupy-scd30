@@ -102,39 +102,26 @@ mp_obj_t scd30_setTemperatureOffset(size_t n_args, const mp_obj_t *pos_args, mp_
 
 MP_DEFINE_CONST_FUN_OBJ_KW(scd30_setTemperatureOffset_obj, 1, scd30_setTemperatureOffset);
 
-mp_obj_t scd30_getCarbonDioxideConcentration(size_t n_args, const mp_obj_t *pos_args, mp_map_t *kw_args)
+mp_obj_t scd30_getCarbonDioxideConcentration(size_t n_args, const mp_obj_t *args)
 {
-    abstract_module_t *self = (abstract_module_t *)pos_args[0];
-    float* offset = mp_obj_get_int(pos_args[1]);
-    common_hal_scd30_getCarbonDioxideConcentration(self, offset);
-    return mp_const_none;
+    abstract_module_t *self = (abstract_module_t *)args[0];
+
+    float *buff = (float *)m_malloc(3 * sizeof(float));
+    mp_obj_t *ret_val = (mp_obj_t *)m_malloc(3 * sizeof(mp_obj_t));
+
+    common_hal_scd30_getCarbonDioxideConcentration(self, buff);
+
+    for (int i = 0; i < 3; i++)
+    {
+        ret_val[i] = mp_obj_new_float(buff[i]);
+    }
+    mp_obj_t ret = mp_obj_new_tuple(3, ret_val);
+    m_free(buff);
+    m_free(ret_val);
+    return ret;
 }
 
-MP_DEFINE_CONST_FUN_OBJ_KW(scd30_getCarbonDioxideConcentration_obj, 1, scd30_getCarbonDioxideConcentration);
-
-
-void scd30_obj_attr(mp_obj_t self_in, qstr attr, mp_obj_t *dest){
-    abstract_module_t *self = (abstract_module_t *)self_in;
-    // uint32_t value;
-    // if (dest[0] == MP_OBJ_NULL) {
-    //     if (attr == MP_QSTR_isAvailable) {
-    //         status = common_hal_scd30_isAvailable(self);
-    //         dest[0] = mp_obj_new_int(status);
-    //         return;
-    //     }
-    //     else if (attr == MP_QSTR_pressure) {
-    //         value = common_hal_bme280_get_pressure(self);
-    //         dest[0] = mp_obj_new_int(value);
-    //         return;
-    //     }
-    //     else if (attr == MP_QSTR_humidity) {
-    //         value = common_hal_bme280_get_humidity(self);
-    //         dest[0] = mp_obj_new_int(value);
-    //         return;
-    //     }
-    // }
-    generic_method_lookup(self_in, attr, dest);
-}
+STATIC MP_DEFINE_CONST_FUN_OBJ_VAR_BETWEEN(scd30_getCarbonDioxideConcentration_obj, 1, 1, scd30_getCarbonDioxideConcentration);
 
 const mp_rom_map_elem_t scd30_locals_dict_table[] = {
     // instance methods
@@ -158,5 +145,4 @@ const mp_obj_type_t grove_scd30_type = {
     .name = MP_QSTR_grove_scd30,
     .make_new = scd30_make_new,
     .locals_dict = (mp_obj_t)&scd30_locals_dict,
-    .attr = scd30_obj_attr,
 };

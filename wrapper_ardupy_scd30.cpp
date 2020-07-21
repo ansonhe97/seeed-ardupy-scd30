@@ -25,7 +25,7 @@
  */
 
 
-#include "Seeed_Arduino_SCD30/Seeed_SCD30.h"
+#include "Seeed_Arduino_SCD30/SCD30.h"
 extern "C"{
 #include "py/mphal.h"
 #include "py/nlr.h"
