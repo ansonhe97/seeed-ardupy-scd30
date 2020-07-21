@@ -2,7 +2,7 @@
 
 ## Introduction
 
-An ArduPy library forGrove - CO2 & Temperature & Humidity Sensor for Arduino (SCD30) - 3-in-1. The Grove - SCD30 is a 3-in-1 Arduino sensor that can measure CO2, temperature, and humidity. Based on Sensirion SCD30, it is a Non-Dispersive Infrared(NDIR) carbon dioxide sensor with high precision and wide measurement accuracy which can reach ±(30 ppm + 3%) between 400ppm to 10000ppm.
+An ArduPy library for Grove - CO2 & Temperature & Humidity Sensor for Arduino (SCD30) - 3-in-1. The Grove - SCD30 is a 3-in-1 Arduino sensor that can measure CO2, temperature, and humidity. Based on Sensirion SCD30, it is a Non-Dispersive Infrared(NDIR) carbon dioxide sensor with high precision and wide measurement accuracy which can reach ±(30 ppm + 3%) between 400ppm to 10000ppm.
 
 
 
